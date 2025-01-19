@@ -20,5 +20,17 @@ In general our AFC FPN+RPN network achieve better results on CPE and SRE comperd
 
 <img src="CPEcyclic.png" width="500"/>
 
+## more results
+## Installation
+Our code relays on the [Swin Transformer Obect Detection](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection), so first clone this repository.
+Next, our code needs to enter to the Swin Transformer Obect Detection repository as follow:
+| File Name      | Destination    | Notes |
+|------------------|---------|---------|
+| rpn_head.py      | Swin-Transformer-Object-Detection/mmdet/models/dense_heads/rpn_head.py   |    |
+| fpn.py           | Swin-Transformer-Object-Detection/mmdet/models/necks/fpn.py    |    |    |
+| White           | 1.037   | 0.155   | -20.891    |
+| Another Speaker | 1.039   | 0.141   | -22.092    |
+
+
 ## Models
 CIFAR-10 models adapted from [![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.4431043.svg)](http://dx.doi.org/10.5281/zenodo.4431043). 
