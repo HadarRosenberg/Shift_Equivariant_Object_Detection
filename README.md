@@ -19,7 +19,6 @@ We trained and tested on 3 configurations:
 In general AFC FPN+RPN network achieve better results on CPE and SRE comperd to the baseline and worse results on the CPE distance.
 
 <img src="all_tests.png" width="700"/>
-
  AFC FPN+RPN network performs worse on CPE distance than baseline but performs better on CPE distance worst-case cyclic shift.
 
 <img src="CPE_distance.png" width="700"/>
@@ -39,10 +38,6 @@ In general AFC FPN+RPN network achieve better results on CPE and SRE comperd to 
 |-----------------|---------------|-------|
 | `rpn_head.py`  | `Swin-Transformer-Object-Detection/mmdet/models/dense_heads/rpn_head.py` | |
 | `fpn.py`       | `Swin-Transformer-Object-Detection/mmdet/models/necks/fpn.py` | |
-| `mask_rcnn_project_baseline_convnext_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco_in1k.py` | `Swin-Transformer-Object-Detection/configs/convnext/` | |
-| `mask_rcnn_project_convnext_afc_only_backbone_tiny_ideal_up_poly_per_channel_scale_7_7_train_chw2_stem_mode_activation_patch4_window7_mstrain_480-800_adamw_3x_coco_in1k.py` | `Swin-Transformer-Object-Detection/configs/convnext/` | |
-| `mask_rcnn_project_convnext_afc_only_fpn_tiny_ideal_up_poly_per_channel_scale_7_7_train_chw2_stem_mode_activation_patch4_window7_mstrain_480-800_adamw_3x_coco_in1k.py` | `Swin-Transformer-Object-Detection/configs/convnext/` | |
-| `mask_rcnn_project_convnext_afc_tiny_ideal_up_poly_per_channel_scale_7_7_train_chw2_stem_mode_activation_patch4_window7_mstrain_480-800_adamw_3x_coco_in1k.py` | `Swin-Transformer-Object-Detection/configs/convnext/` | |
 | `coco_instance_resize_images.py` | `Swin-Transformer-Object-Detection/configs/_base_/datasets/` | |
 | `init_cnn.py` | `detection_tools/mmcv/mmcv/cnn/` | Call it `__init__.py` in the folder |
 | `init_cnn_bricks.py` | `detection_tools/mmcv/mmcv/cnn/bricks/` | Call it `__init__.py` in the folder |
@@ -50,14 +45,13 @@ In general AFC FPN+RPN network achieve better results on CPE and SRE comperd to 
 | `init_backbone.py` | `detection_tools/mmdetection/mmdet/models/backbones/` | Call it `__init__.py` in the folder |
 | `convnext_afc.py` | `detection_tools/mmdetection/mmdet/models/backbones/` | |
 
-6. Clone the work_dirs folder from our code and follow the orders in the "Run tests" section
-7. Install COCO dataset on you computer and change the dataDir path in the Swin-Transformer-Object-Detection/project/test_runner/test_runner.py
-8. Go to Swin-Transformer-Object-Detection/project/ and do:
+6. Install COCO dataset on you computer and change the dataDir path in the Swin-Transformer-Object-Detection/project/test_runner/test_runner.py
+7. Make video_object_detection_metrics and project_utils libraries, go to Swin-Transformer-Object-Detection/project/ and do:
 ```bash
    pip install -e .
 ```
-to make video_object_detection_metrics and project_utils libraries
-   
+8. Clone the work_dirs folder from our code and follow the orders in the "Run tests" section
+
 ## Run tests
 Use the test_warpper.py in the path Swin-Transformer-Object-Detection/project/test_runner/test_wrapper.py, follow this command structure:
 
