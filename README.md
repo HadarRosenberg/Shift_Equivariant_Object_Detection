@@ -30,22 +30,63 @@ In general our AFC FPN+RPN network achieve better results on CPE and SRE comperd
 3. Copy from our code the "project" folder under "Swin Transformer Obect Detection"
 4. Clone to the "project" folder the following repository [video_object_detection_metrics](https://github.com/ceykmc/video_object_detection_metrics)
 5. Copy the files in our code under "modified_files" folder and enter them to the code as follow:
+
 | File Name      | Destination    | Notes |
-|------------------|---------|---------|
-| rpn_head.py      | Swin-Transformer-Object-Detection/mmdet/models/dense_heads/rpn_head.py   |    |
-| fpn.py           | Swin-Transformer-Object-Detection/mmdet/models/necks/fpn.py    |    |
-| mask_rcnn_project_baseline_convnext_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco_in1k.py           | Swin-Transformer-Object-Detection/configs/convnext/   | |
-| mask_rcnn_project_convnext_afc_only_backbone_tiny_ideal_up_poly_per_channel_scale_7_7_train_chw2_stem_mode_activation_patch4_window7_mstrain_480-800_adamw_3x_coco_in1k.py | Swin-Transformer-Object-Detection/configs/convnext/   |   |
-| mask_rcnn_project_convnext_afc_only_fpn_tiny_ideal_up_poly_per_channel_scale_7_7_train_chw2_stem_mode_activation_patch4_window7_mstrain_480-800_adamw_3x_coco_in1k.py 
-| Swin-Transformer-Object-Detection/configs/convnext/ | |
-| mask_rcnn_project_convnext_afc_tiny_ideal_up_poly_per_channel_scale_7_7_train_chw2_stem_mode_activation_patch4_window7_mstrain_480-800_adamw_3x_coco_in1k.py | Swin-Transformer-Object-Detection/configs/convnext/ | |
-| coco_instance_resize_images.py | Swin-Transformer-Object-Detection/configs/_base_/datasets/ | |
-| init_cnn.py | detection_tools/mmcv/mmcv/cnn/ | call it __init__.py in the folder|
-| init_cnn_bricks.py | detection_tools/mmcv/mmcv/cnn/bricks/ | call it __init__.py in the folder|
-| conv_module.py | detection_tools/mmcv/mmcv/cnn/bricks/ | |
-| init_backbone.py | detection_tools/mmdetection/mmdet/models/backbones/| call it __init__.py in the folder|
-| convnext_afc.py| detection_tools/mmdetection/mmdet/models/backbones/ | |
+|-----------------|---------------|-------|
+| `rpn_head.py`  | `Swin-Transformer-Object-Detection/mmdet/models/dense_heads/rpn_head.py` | |
+| `fpn.py`       | `Swin-Transformer-Object-Detection/mmdet/models/necks/fpn.py` | |
+| `mask_rcnn_project_baseline_convnext_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco_in1k.py` | `Swin-Transformer-Object-Detection/configs/convnext/` | |
+| `mask_rcnn_project_convnext_afc_only_backbone_tiny_ideal_up_poly_per_channel_scale_7_7_train_chw2_stem_mode_activation_patch4_window7_mstrain_480-800_adamw_3x_coco_in1k.py` | `Swin-Transformer-Object-Detection/configs/convnext/` | |
+| `mask_rcnn_project_convnext_afc_only_fpn_tiny_ideal_up_poly_per_channel_scale_7_7_train_chw2_stem_mode_activation_patch4_window7_mstrain_480-800_adamw_3x_coco_in1k.py` | `Swin-Transformer-Object-Detection/configs/convnext/` | |
+| `mask_rcnn_project_convnext_afc_tiny_ideal_up_poly_per_channel_scale_7_7_train_chw2_stem_mode_activation_patch4_window7_mstrain_480-800_adamw_3x_coco_in1k.py` | `Swin-Transformer-Object-Detection/configs/convnext/` | |
+| `coco_instance_resize_images.py` | `Swin-Transformer-Object-Detection/configs/_base_/datasets/` | |
+| `init_cnn.py` | `detection_tools/mmcv/mmcv/cnn/` | Call it `__init__.py` in the folder |
+| `init_cnn_bricks.py` | `detection_tools/mmcv/mmcv/cnn/bricks/` | Call it `__init__.py` in the folder |
+| `conv_module.py` | `detection_tools/mmcv/mmcv/cnn/bricks/` | |
+| `init_backbone.py` | `detection_tools/mmdetection/mmdet/models/backbones/` | Call it `__init__.py` in the folder |
+| `convnext_afc.py` | `detection_tools/mmdetection/mmdet/models/backbones/` | |
 
+6. Clone the work_dirs folder from our code and follow the orders in the "Run tests" section
+7. Install COCO dataset on you computer and change the dataDir path in the Swin-Transformer-Object-Detection/project/test_runner/test_runner.py
+   
+## Run tests
+Use the test_warpper.py in the path Swin-Transformer-Object-Detection/project/test_runner/test_wrapper.py, follow this command structure:
 
-## Models
-CIFAR-10 models adapted from [![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.4431043.svg)](http://dx.doi.org/10.5281/zenodo.4431043). 
+```bash
+python test_wrapper.py --threads <num_threads> --max_shift <max_shift_value> --stride <stride_value> [optional flags]
+```
+
+### Arguments
+
+#### Required:
+- `--max_shift <float>`  
+  Specifies the maximum shift value. **(Required)**
+
+#### Optional:
+- `--threads <int>`  
+  Number of threads to use. **(Default: 4)**
+
+- `--stride <int>`  
+  Stride value. **(Default: 1)**
+
+- `-r`, `--random_weights`  
+  Use random weights. **(Default: False)**  
+  Example: `-r` or `--random_weights`
+
+- `-fpn`  
+  Use AFC FPN + RPN config. **(Default: False)**  
+  Example: `-fpn`
+
+- `--only-fpn`  
+  Use AFC only FPN config. **(Default: False)**  
+  Example: `--only-fpn`
+
+- `-is_afc`  
+  Use AFC config. **(Default: False)**  
+  Example: `-is_afc`
+
+- `-is_cyclic`  
+  Use cyclic shift or crop shift. **(Default: False)**  
+  Example: `-is_cyclic`
+
+  ** Note to change the path to the config file and the path to the checkpiont to the path of the work_dirs
