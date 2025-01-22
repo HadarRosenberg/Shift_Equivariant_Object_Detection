@@ -24,16 +24,27 @@ In general our AFC FPN+RPN network achieve better results on CPE and SRE comperd
 ## Installation
 1. Clone this repository [Swin Transformer Obect Detection](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection) under the base dir.
 2. Open dir name detection_tools and clone under it the following repositories:
-   * [mmcv](https://github.com/open-mmlab/mmcv )
+   * [mmcv](https://github.com/open-mmlab/mmcv)
    * [mmdection](https://github.com/open-mmlab/mmdetection)
    * [cocoapi](https://github.com/open-mmlab/cocoapi)
-Next, our code needs to enter to the Swin Transformer Obect Detection repository as follow:
+3. Copy from our code the "project" folder under "Swin Transformer Obect Detection"
+4. Clone to the "project" folder the following repository [video_object_detection_metrics](https://github.com/ceykmc/video_object_detection_metrics)
+5. Copy the files in our code under "modified_files" folder and enter them to the code as follow:
 | File Name      | Destination    | Notes |
 |------------------|---------|---------|
 | rpn_head.py      | Swin-Transformer-Object-Detection/mmdet/models/dense_heads/rpn_head.py   |    |
-| fpn.py           | Swin-Transformer-Object-Detection/mmdet/models/necks/fpn.py    |    |    |
-| White           | 1.037   | 0.155   | -20.891    |
-| Another Speaker | 1.039   | 0.141   | -22.092    |
+| fpn.py           | Swin-Transformer-Object-Detection/mmdet/models/necks/fpn.py    |    |
+| mask_rcnn_project_baseline_convnext_tiny_patch4_window7_mstrain_480-800_adamw_3x_coco_in1k.py           | Swin-Transformer-Object-Detection/configs/convnext/   | |
+| mask_rcnn_project_convnext_afc_only_backbone_tiny_ideal_up_poly_per_channel_scale_7_7_train_chw2_stem_mode_activation_patch4_window7_mstrain_480-800_adamw_3x_coco_in1k.py | Swin-Transformer-Object-Detection/configs/convnext/   |   |
+| mask_rcnn_project_convnext_afc_only_fpn_tiny_ideal_up_poly_per_channel_scale_7_7_train_chw2_stem_mode_activation_patch4_window7_mstrain_480-800_adamw_3x_coco_in1k.py 
+| Swin-Transformer-Object-Detection/configs/convnext/ | |
+| mask_rcnn_project_convnext_afc_tiny_ideal_up_poly_per_channel_scale_7_7_train_chw2_stem_mode_activation_patch4_window7_mstrain_480-800_adamw_3x_coco_in1k.py | Swin-Transformer-Object-Detection/configs/convnext/ | |
+| coco_instance_resize_images.py | Swin-Transformer-Object-Detection/configs/_base_/datasets/ | |
+| init_cnn.py | detection_tools/mmcv/mmcv/cnn/ | call it __init__.py in the folder|
+| init_cnn_bricks.py | detection_tools/mmcv/mmcv/cnn/bricks/ | call it __init__.py in the folder|
+| conv_module.py | detection_tools/mmcv/mmcv/cnn/bricks/ | |
+| init_backbone.py | detection_tools/mmdetection/mmdet/models/backbones/| call it __init__.py in the folder|
+| convnext_afc.py| detection_tools/mmdetection/mmdet/models/backbones/ | |
 
 
 ## Models
