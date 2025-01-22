@@ -22,7 +22,11 @@ In general our AFC FPN+RPN network achieve better results on CPE and SRE comperd
 
 ## more results
 ## Installation
-Our code relays on the [Swin Transformer Obect Detection](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection), so first clone this repository.
+1. Clone this repository [Swin Transformer Obect Detection](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection) under the base dir.
+2. Open dir name detection_tools and clone under it the following repositories:
+   * [mmcv](https://github.com/open-mmlab/mmcv )
+   * [mmdection](https://github.com/open-mmlab/mmdetection)
+   * [cocoapi](https://github.com/open-mmlab/cocoapi)
 Next, our code needs to enter to the Swin Transformer Obect Detection repository as follow:
 | File Name      | Destination    | Notes |
 |------------------|---------|---------|
