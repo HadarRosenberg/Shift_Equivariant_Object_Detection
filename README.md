@@ -3,24 +3,28 @@ This repository contains the code for the project "Shift Equivariant Object Dete
 Our project introduces an approach to exstand Alias-Free solution to detection networks to reseved equivariance in the modle.
 
 ## Introduction
-In the paper Alias-Free Convnets: Fractional Shift Invariance via Polynomial Activations, the authors investigate the difficulties conventional Convolutional Neural Networks (CNNs) face in maintaining true shift invariance. The study highlights that traditional CNNs often suffer from aliasing caused by downsampling layers and non-linearities. These aliasing effects can disrupt shift invariance, leading to unpredictable variations in the network's output when input images are shifted. This limitation poses a significant challenge to the consistency and reliability of CNNs, especially in tasks like image classification and object detection.
+The paper Alias-Free ConvNets: Fractional Shift Invariance via Polynomial Activations addresses the challenge of achieving true shift invariance in conventional Convolutional Neural Networks (CNNs). Traditional CNNs often struggle with aliasing caused by downsampling layers and non-linearities. To overcome this, the authors propose the Alias-Free Convolution (AFC) method, which modifies both downsampling and non-linear layers using alias-free techniques such as polynomial activations, blur-pooling, and anti-aliasing normalization layers to create an alias-free network.
 
-The authors propose an anti-aliasing method (AFC) that targets both downsampling and non-linear layers within CNNs. By integrating this approach, they create models that achieve perfect-equivariance and are truly alias-free. This means their CNNs are invariant to both integer and fractional (sub-pixel) translations, enhancing the robustness and reliability of the models. This innovation makes the model more resistant to adversarial attacks that exploit these shifts.
-
-Hagay's method involves replacing traditional non-linear activations with polynomial activations. This is combined with upsampling before the activation and applying a low-pass filter (LPF) followed by downsampling after the activation. Additionally, he substitutes max-pooling layers with blur-pooling and employs similar techniques for layer normalization to ensure alias-free properties throughout the network.
-
-In our project, we take Hagay’s approach from image classification to object detection using the Mask R-CNN architecture with the AFC ConvNext backbone. Mask R-CNN is a well-regarded framework for object detection and instance segmentation, known for its capability to handle various scales and shapes of objects. By incorporating Hagay's alias-free, shift-invariant methods, our project aims to improve the precision and robustness of object detection models. The goal is to develop a system that can accurately detect and segment objects, even in the presence of fractional pixel shifts, making the detection process more reliable and effective.
+Building on this, our project extends Hagay’s AFC method from image classification to object detection by integrating it into the Mask R-CNN architecture with the ConvNext backbone. This implementation aims to improve object detection precision and robustness, ensuring reliable performance even under fractional pixel shifts, thereby making the system more effective for real-world scenarios.
 
 ## Evaluating Model Equivariance with Video Stability Metrics
 
 For evaluating the equivariance of our model, we utilized several video stability metrics from the article [On The Stability of Video Detection and Tracking.](https://arxiv.org/pdf/1611.06467) Specifically, we employed the Center Position Error (CPE) and the Scale and Ratio Error (SRE). Additionally, we introduced 2 novel metrics, Center Position Distance (CPD) – Mean and Worst Case, to provide further insights into the stability of bounding box (BBOX) predictions.
 
 ## Results
-In general our AFC FPN+RPN network achieve better results on CPE and SRE comperd to the baseline and worse results on the CPE distance.
+We trained and tested on 3 configurations:
+ * Baseline without AFC – Green in the graphs.
+ * Only update the backbone to be AFC – Red in the graphs.
+ * AFC in FPN, RPN and backbone – Blue in the graphs.
+In general AFC FPN+RPN network achieve better results on CPE and SRE comperd to the baseline and worse results on the CPE distance.
 
-<img src="CPEcyclic.png" width="500"/>
+<img src="all_tests.png" width="700"/>
 
-## more results
+ AFC FPN+RPN network performs worse on CPE distance than baseline but performs better on CPE distance worst-case cyclic shift.
+
+<img src="CPE_distance.png" width="700"/>
+
+
 ## Installation
 1. Clone this repository [Swin Transformer Obect Detection](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection) under the base dir.
 2. Open dir name detection_tools and clone under it the following repositories:
