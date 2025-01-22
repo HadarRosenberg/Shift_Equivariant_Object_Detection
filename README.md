@@ -52,6 +52,11 @@ In general AFC FPN+RPN network achieve better results on CPE and SRE comperd to 
 
 6. Clone the work_dirs folder from our code and follow the orders in the "Run tests" section
 7. Install COCO dataset on you computer and change the dataDir path in the Swin-Transformer-Object-Detection/project/test_runner/test_runner.py
+8. Go to Swin-Transformer-Object-Detection/project/ and do:
+```bash
+   pip install -e .
+```
+to make video_object_detection_metrics and project_utils libraries
    
 ## Run tests
 Use the test_warpper.py in the path Swin-Transformer-Object-Detection/project/test_runner/test_wrapper.py, follow this command structure:
